@@ -122,7 +122,6 @@ def get_val():
         print("entry_10 is blank")
 
     print(f"Machine input : {machine}")
-    print(type(machine))
 
     # Main variable
     job = len(machine[0])
@@ -137,11 +136,11 @@ def get_val():
     t1_stop = process_time_ns()
     t1 = t1_stop-t1_start
     # Print result
-    print(best_order)
-    print(best_makespan)
-    print(idle_time)
-    print(t1_stop, t1_start)
-    print(t1)
+    print(f"Best order : {best_order}")
+    print(f"Makespan : {best_makespan}")
+    print(f"Idle time : {idle_time}")
+    print(f"Process start time : {t1_stop}, stop time : {t1_start}")
+    print(f"Total process time : {t1}")
     # Output to UI
     best_order_result.config(text=best_order)
     makespan_result.config(text=best_makespan)
