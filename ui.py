@@ -52,17 +52,17 @@ machine_entry_10.grid(row=9, column=1)
 best_order_title = tk.Label(text="最佳順序 : ")
 best_order_title.grid(row=11, column=0, sticky='E')
 best_order_result = tk.Label(text="")
-best_order_result.grid(row=11, column=1)
+best_order_result.grid(row=11, column=1, sticky='W')
 
 makespan_title = tk.Label(text="總時間 (小時) : ")
 makespan_title.grid(row=12, column=0, sticky='E')
 makespan_result = tk.Label(text="")
-makespan_result.grid(row=12, column=1)
+makespan_result.grid(row=12, column=1, sticky='W')
 
 idle_title = tk.Label(text="閒置時間 (小時) : ")
 idle_title.grid(row=13, column=0, sticky='E')
 idle_result = tk.Label(text="")
-idle_result.grid(row=13, column=1)
+idle_result.grid(row=13, column=1, sticky='W')
 
 
 ##################### Function #####################
@@ -128,6 +128,9 @@ def get_val():
     print(best_order)
     print(best_makespan)
     print(idle_time)
+    best_order_result.config(text=best_order)
+    makespan_result.config(text=best_makespan)
+    idle_result.config(text=idle_time)
 
 
 # Schdule sort
