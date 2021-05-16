@@ -1,5 +1,6 @@
 import tkinter as tk
 import ast
+from time import process_time_ns
 
 win = tk.Tk()
 win.title("Johnson's Algorithm Scheduling")
@@ -49,7 +50,7 @@ machine_entry_9.grid(row=8, column=1)
 machine_entry_10 = tk.Entry()
 machine_entry_10.grid(row=9, column=1)
 
-best_order_title = tk.Label(text="最佳順序 : ")
+best_order_title = tk.Label(text="最佳工作順序 : ")
 best_order_title.grid(row=11, column=0, sticky='E')
 best_order_result = tk.Label(text="")
 best_order_result.grid(row=11, column=1, sticky='W')
@@ -64,11 +65,19 @@ idle_title.grid(row=13, column=0, sticky='E')
 idle_result = tk.Label(text="")
 idle_result.grid(row=13, column=1, sticky='W')
 
+process_title = tk.Label(text="處理時間 : ")
+process_title.grid(row=14, column=0, sticky='E')
+process_result = tk.Label(text="")
+process_result.grid(row=14, column=1, sticky='W')
+
 
 ##################### Function #####################
 
 # Get machine value
 def get_val():
+    # Start the stopwatch / counter
+    t1_start = process_time_ns()
+    # Get Value
     global machine
     machine = []
     try:
@@ -115,22 +124,29 @@ def get_val():
     print(f"Machine input : {machine}")
     print(type(machine))
 
+    # Main variable
     job = len(machine[0])
     max_makespan = {}
     # Main
     machine_order = sum_process_time(machine, job)
-    # print(machine_order)
     makespan = find_all_order(machine, machine_order)
-    # print(makespan)
     best_order = find_best_order(makespan, machine_order)
     best_makespan = min(makespan)
     idle_time = find_idle_time(best_makespan, machine)
+    # Stop the stopwatch / counter
+    t1_stop = process_time_ns()
+    t1 = t1_stop-t1_start
+    # Print result
     print(best_order)
     print(best_makespan)
     print(idle_time)
+    print(t1_stop, t1_start)
+    print(t1)
+    # Output to UI
     best_order_result.config(text=best_order)
     makespan_result.config(text=best_makespan)
     idle_result.config(text=idle_time)
+    process_result.config(text=t1)
 
 
 # Schdule sort
