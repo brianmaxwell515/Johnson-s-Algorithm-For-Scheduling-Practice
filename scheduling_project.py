@@ -1,6 +1,6 @@
 import tkinter as tk
 import ast
-from time import process_time_ns
+from time import process_time
 
 win = tk.Tk()
 win.title("Johnson's Algorithm Scheduling")
@@ -76,7 +76,7 @@ process_result.grid(row=14, column=1, sticky='W')
 # Get machine value
 def get_val():
     # Start the stopwatch / counter
-    t1_start = process_time_ns()
+    t1_start = process_time()
     # Get Value
     global machine
     machine = []
@@ -133,14 +133,14 @@ def get_val():
     best_makespan = min(makespan)
     idle_time = find_idle_time(best_makespan, machine)
     # Stop the stopwatch / counter
-    t1_stop = process_time_ns()
+    t1_stop = process_time()
     t1 = t1_stop-t1_start
     # Print result
     print(f"Best order : {best_order}")
     print(f"Makespan : {best_makespan}")
     print(f"Idle time : {idle_time}")
-    print(f"Process start time : {t1_stop}, stop time : {t1_start}")
-    print(f"Total process time : {t1}")
+    print(f"Process start time : {t1_start}, stop time : {t1_stop}")
+    print(f"Total process time : {t1:.3f} seconds")
     # Output to UI
     best_order_result.config(text=best_order)
     makespan_result.config(text=best_makespan)
