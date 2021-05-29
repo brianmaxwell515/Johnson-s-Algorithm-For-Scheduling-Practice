@@ -121,7 +121,8 @@ def get_val():
     except SyntaxError:
         print("entry_10 is blank")
 
-    print(f"Machine input : {machine}")
+    print("\n")
+    print(f"Machine input : {machine}\n")
 
     # Main variable
     job = len(machine[0])
@@ -170,8 +171,8 @@ def schedule_sort(job, machine_A, machine_B):
 
     sorted_A.sort()
     sorted_B.sort()
-    # print(sorted_A)
-    # print(sorted_B)
+    print(f"Machine group 1 (After compare) : {sorted_A}")
+    print(f"Machine group 2 (After compare) : {sorted_B}")
 
     for i in sorted_A:
         res_1.append(machine_A.index(i))
@@ -181,6 +182,7 @@ def schedule_sort(job, machine_A, machine_B):
 
     res = res_1 + res_2
     res_print = [x+1 for x in res]
+    print(f"Machine order result : {res_print} \n")
     return res_print
 
 
@@ -192,8 +194,8 @@ def sum_process_time(machine, job):
         machine_2 = machine[-i:]
         machine_1 = [sum(x) for x in zip(*machine_1)]
         machine_2 = [sum(x) for x in zip(*machine_2)]
-        # print(machine_1)
-        # print(machine_2)
+        print(f"Machine group 1 : {machine_1}")
+        print(f"Machine group 2 : {machine_2}")
         machine_order.append(schedule_sort(job, machine_1, machine_2))
     return machine_order
 

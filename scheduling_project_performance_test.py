@@ -1,27 +1,26 @@
 from time import process_time
 import numpy as np
 
-# machine = [[6, 17, 3, 10, 5],
-#            [10, 14, 10, 26, 15],
-#            [1, 17, 13, 31, 13],
-#            [13, 12, 17, 20, 15]]
+machine = [[6, 17, 3, 10, 5],
+           [10, 14, 10, 26, 15],
+           [1, 17, 13, 31, 13],
+           [13, 12, 17, 20, 15]]
 
 # machine = [[5, 4, 8, 2, 6, 12],
 #            [5, 3, 9, 7, 8, 15]]
 
 # machine = [[5, 13, 6, 7], [3, 5, 4, 2], [7, 9, 5, 6]]
 
-machine = np.random.random_integers(1, 20, (300, 300))
-machine = machine.tolist()
-print(machine)
+# machine = np.random.random_integers(1, 20, (100, 100))
+# machine = machine.tolist()
+# print(machine)
 
 
 job = len(machine[0])
 max_makespan = {}
 
+
 # Schdule sort
-
-
 def schedule_sort(job, machine_A, machine_B):
     sorted_machine = []
     sorted_A = []
@@ -43,8 +42,8 @@ def schedule_sort(job, machine_A, machine_B):
 
     sorted_A.sort()
     sorted_B.sort()
-    # print(sorted_A)
-    # print(sorted_B)
+    print(f"Machine group 1 (After compare) : {sorted_A}")
+    print(f"Machine group 2 (After compare) : {sorted_B}")
 
     for i in sorted_A:
         res_1.append(machine_A.index(i))
@@ -54,6 +53,7 @@ def schedule_sort(job, machine_A, machine_B):
 
     res = res_1 + res_2
     res_print = [x+1 for x in res]
+    print(f"Machine order result : {res_print} \n")
     return res_print
 
 
@@ -65,9 +65,10 @@ def sum_process_time(machine):
         machine_2 = machine[-i:]
         machine_1 = [sum(x) for x in zip(*machine_1)]
         machine_2 = [sum(x) for x in zip(*machine_2)]
-        # print(machine_1)
-        # print(machine_2)
+        print(f"Machine group 1 : {machine_1}")
+        print(f"Machine group 2 : {machine_2}")
         machine_order.append(schedule_sort(job, machine_1, machine_2))
+    print(f"All machine order : {machine_order}")
     return machine_order
 
 
